@@ -1,0 +1,80 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:b="http://bootsfaces.net/ui">
+
+
+<!-- <p:ajaxStatus styleClass="ajax-status"> -->
+<!-- 	<f:facet name="start"> -->
+<!-- 		<h:graphicImage library="imagens" name="carregando.gif" /> -->
+<!-- 	</f:facet> -->
+<!-- 	<f:facet name="complete"> -->
+<!-- 		<h:outputText value="" /> -->
+<!-- 	</f:facet> -->
+<!-- </p:ajaxStatus> -->
+
+
+
+<!-- Menu superior -->
+<b:navBar brand="VIDEOKE-SHOW" brandhref="index.xhtml" inverse="true">
+
+
+	<b:navbarLinks rendered="#{sessionScope.usuariologado != null}">
+
+		<b:navLink value="Painel" outcome="/restrito/Home"></b:navLink>
+
+		<b:dropMenu value="Evento">
+			<b:navLink value="Criar Evento"
+				outcome="/evento/CadastroEvento.xhtml"></b:navLink>
+			
+		</b:dropMenu>
+
+		<b:dropMenu value="Participante">
+
+			<b:navLink value="Novo Participante"
+				outcome="/participante/CadastroParticipante.xhtml"></b:navLink>
+
+			<b:navLink value="Listagem de Participante"
+				outcome="/participante/PesquisaParticipantes.xhtml"></b:navLink>
+
+			
+
+		</b:dropMenu>
+
+
+		<b:dropMenu value="#{sessionScope.usuariologado.email}">
+			<b:navLink value="Relatórios" href="#" ></b:navLink>
+
+		</b:dropMenu>
+
+	
+	</b:navbarLinks>
+
+
+	<h:form styleClass="navbar-form navbar-right"
+		rendered="#{sessionScope.usuariologado == null}">
+		<div class="form-group">
+			`
+			<b:inputText placeholder="Email" fieldSize="sm"
+				value="#{loginBean.login.email}" />
+		</div>
+		<div class="form-group">
+			<b:inputSecret placeholder="Senha" fieldSize="sm"
+				value="#{loginBean.login.senha}" />
+		</div> #{' '} <b:commandButton action="#{loginBean.logar}"
+			value="Logar" look="success" icon="chevron-right" iconAlign="right" />
+	</h:form>
+	
+	<h:form styleClass="navbar-form navbar-right"
+		rendered="#{sessionScope.usuariologado != null}">
+		
+		<b:commandButton action="#{loginBean.sair}"
+			value="Sair" look="danger" icon="chevron-right" iconAlign="right" />
+	</h:form>
+	
+	
+	<div style="clear: both"></div>
+</b:navBar>
+</html>

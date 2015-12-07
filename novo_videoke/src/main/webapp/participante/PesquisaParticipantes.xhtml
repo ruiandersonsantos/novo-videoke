@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistema de controle para videoke</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+</h:head>
+
+<h:body>
+	<ui:include src="../topo.xhtml" />
+
+	<b:panel id="pn_listagem" collapsed="false" look="primary"
+		title="Listagem de Participante">
+
+		<h:form styleClass="form-horizontal" id="frm_participante">
+
+			<p:messages id="messages" autoUpdate="true" closable="true" />
+			<!-- inicio do datatable -->
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12">
+
+						<div class="table-responsive">
+							<p:dataTable id="ParticipanteTable" styleClass="table table-bordered table-striped table-hover table-condensed"
+								value="#{pesquisaParticipanteBean.participantes}"
+								var="participante" style="margin-top: 20px"
+								emptyMessage="Nenhum participante encontrado." rows="10"
+								paginator="true" paginatorAlwaysVisible="false"
+								paginatorPosition="bottom">
+								<p:column headerText="Código"
+									style="text-align: center; width: 100px">
+									<h:outputText value="#{participante.id}" />
+								</p:column>
+
+								<p:column headerText="Nome">
+									<h:outputText value="#{participante.primeironome}" />
+								</p:column>
+								<p:column headerText="E-mail">
+									<h:outputText value="#{participante.email}" />
+								</p:column>
+								<p:column headerText="Ação"
+									style="width: 100px; text-align: center">
+
+									<b:button styleClass="btn btn-primary"
+										icon="glyphicon glyphicon-pencil"
+										outcome="CadastroParticipante" value="Editar">
+										<f:param name="participante" value="#{participante.id}" />
+									</b:button>
+
+
+								</p:column>
+							</p:dataTable>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</h:form>
+	</b:panel>
+
+	<p:separator style="margin-top: 20px" />
+
+	<ui:include src="../rodape.xhtml" />
+
+</h:body>
+
+</html>

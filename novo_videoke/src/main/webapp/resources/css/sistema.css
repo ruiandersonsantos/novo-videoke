@@ -1,0 +1,20 @@
+@charset "utf-8";
+
+
+#pn_cadastro{
+	margin-top: 60px;
+    margin-left: 90px;
+    margin-right: 90px;
+}
+
+#pn_listagem{
+	margin-top: 60px;
+	margin-left: 10px;
+    margin-right: 10px;
+}
+
+#pn_cadastro_evento{
+	margin-top: 60px;
+	margin-left: 10px;
+    margin-right: 10px;
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<title>Videoke</title>
+	<meta name="viewport" content="width=device-width" />
+
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<script src="js/jquery.min.js" type="text/javascript" />
+
+	<script src="js/bootstrap.min.js" type="text/javascript" />
+
+	<link rel="stylesheet" href="css/customizado.css" />
+
+</h:head>
+
+<h:body>
+	<div class="container">
+
+		<ui:include src="topop.xhtml" />
+
+		<!-- conteudo começa aqui -->
+		<!-- Painel com os eventos ativos -->
+
+		<h:form id="frm_filap">
+			<p:dataTable id="EventoTable"
+				styleClass="table table-bordered table-striped table-hover table-condensed"
+				value="#{eventoBeanParticipante.eventosParticipante}" var="evento"
+				style="margin-top: 10px" emptyMessage="Nenhum evento aberto.">
+
+
+				<p:column headerText="Descrição" style=" width: 20px">
+					<h:outputText value="#{evento.descricao}" />
+				</p:column>
+
+				<p:column headerText="Abertura"
+					style=" width: 20px; text-align: center;">
+					<h:outputText id="dataAbertura" value="#{evento.dataInicio.time}">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</h:outputText>
+				</p:column>
+
+
+				<p:column headerText="Fila" style=" width: 5px; text-align: center;">
+					<p:commandButton icon="ui-icon-clipboard" update=":frm_filap"
+						action="#{filaParticipanteBean.buscarFilaDoParticipante(evento)}">
+						<f:param name="evento" value="#{evento}" />
+					</p:commandButton>
+				</p:column>
+				
+				<p:column headerText="Cantou" style=" width: 5px; text-align: center;">
+					<p:commandButton icon="ui-icon-info" update=":frm_filap"
+						action="#{filaParticipanteBean.buscarMuscasCantadas(evento)}">
+						<f:param name="evento" value="#{evento}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+			
+			<h3>
+				<h:outputLabel value="Musicas cantadas" rendered="#{filaParticipanteBean.musicasCantadas.size() > 0}"/>
+				<h:outputLabel value="Fila de Participantes" rendered="#{filaParticipanteBean.listaParaCantar.size() > 0}"/>
+			</h3>
+
+			<!-- dataTable da fila -->
+			<p:dataTable id="filaTable"
+				rendered="#{filaParticipanteBean.listaParaCantar.size() > 0}"
+				styleClass="table table-bordered table-striped table-hover table-condensed"
+				value="#{filaParticipanteBean.listaParaCantar}" var="fila" rows="10"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" style="margin-top: 10px">
+
+
+				<p:column headerText="Posição"
+					style=" width: 2px; text-align: center;">
+					<h:outputText value="#{fila.posicao}" />
+				</p:column>
+
+				<p:column headerText="Participante" style=" width: 20px">
+					<h:outputText value="#{fila.participante.primeironome}"
+						style="#{fila.participante.id == sessionScope.usuariologado.participante.id ? 'background: #FFA07A;' : ''}" />
+				</p:column>
+
+				<p:column headerText="Musica"
+					style=" width: 5px; text-align: center">
+					<h:outputText value="#{fila.codigomusica}" />
+				</p:column>
+
+
+
+			</p:dataTable>
+			
+			
+			<!-- dataTable das musicas cantas -->
+			<p:dataTable id="musicaTable"
+				rendered="#{filaParticipanteBean.musicasCantadas.size() > 0}"
+				styleClass="table table-bordered table-striped table-hover table-condensed"
+				value="#{filaParticipanteBean.musicasCantadas}" var="musica" rows="20"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom" style="margin-top: 10px">
+
+
+				<p:column headerText="Musica"
+					style=" width: 2px; text-align: center;">
+					<h:outputText value="#{musica.codigomusica}" />
+				</p:column>
+
+				<p:column headerText="Participante" style=" width: 20px">
+					<h:outputText value="#{musica.participante.primeironome}"
+						style="#{musica.participante.id == sessionScope.usuariologado.participante.id ? 'background: #FFA07A;' : ''}" />
+				</p:column>
+
+				<p:column headerText="Horario"
+					style=" width: 5px; text-align: center">
+					<h:outputText value="#{musica.horacantada.time}" >
+						<f:convertDateTime pattern="HH:mm:ss" timeZone="America/Sao_Paulo"/> 
+					</h:outputText>
+				</p:column>
+
+
+
+			</p:dataTable>
+
+		</h:form>
+
+
+		<ui:include src="noticiasp.xhtml" />
+		<ui:include src="rodapep.xhtml" />
+
+
+	</div>
+	<!-- /container -->
+</h:body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistema de controle para videoke</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+</h:head>
+
+<h:body>
+	<ui:include src="topo.xhtml" />
+	
+	 <p:growl id="message" />
+
+	<b:jumbotron>
+		<b:container>
+			<h1>Olá, Videoteka!</h1>
+			<p>Esse será seu mais novo portal com informações de videokes de todo Rio de Janeiro,
+			 aqui você vai encontrar todos os point que a galera mais curte!. 
+			 Nessa sexta-feira 06/11/2015, gostariamos de destacar o videoke do Pá e Bola com presença marcante 
+			 de Gilva Guedes entre outros convidados !</p>
+			<p>
+				<a
+					href="#"
+					class="btn btn-lg btn-info">Saiba Mais »</a>
+			</p>
+		</b:container>
+
+	</b:jumbotron>
+
+	<ui:include src="rodape.xhtml" />
+</h:body>
+
+</html>

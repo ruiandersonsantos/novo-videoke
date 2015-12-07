@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:form>
+<!-- Jumbotron -->
+<div class="navbar navbar-default">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+					class="icon-bar"></span><span class="icon-bar"></span>
+			</button>
+			<a href="#" class="navbar-brand">VIDEOKE-SHOW</a>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li><h:link value="Inicio" outcome="homep.xhtml"/></li>
+				<li><h:link value="Fila" outcome="filap.xhtml"/></li>
+				<li><h:link value="Catálogo" outcome="buscamusica.xhtml"/></li>
+				<li><h:commandLink value="Sair" action="#{loginBean.sair}"/></li>
+			</ul>
+		</div>
+	</div>
+</div>
+</h:form>
+</html>

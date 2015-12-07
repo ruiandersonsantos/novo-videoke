@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistema de controle para videoke</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+</h:head>
+
+<h:body>
+
+	<ui:include src="../topo.xhtml" />
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="col-sm-12">
+
+				<b:panel id="pn_cadastro_evento" collapsed="false" look="primary"
+					title="Cadastro de Evento">
+
+					<h:form styleClass="form-horizontal" id="frm_evento">
+
+						<p:messages id="messages" autoUpdate="true" closable="true" />
+
+
+						<div class="form-group">
+							<label for="id" class="col-sm-2 control-label">Id:</label>
+							<div class="col-sm-10">
+								<b:inputText id="id" span="2" readonly="true"
+									value="#{eventoBean.evento.id}" />
+							</div>
+
+							<label for="pnome" class="col-sm-2 control-label">Descrição:</label>
+							<div class="col-sm-10">
+								<b:inputText id="pnome" span="8"
+									value="#{eventoBean.evento.descricao}"
+									placeholder="informe uma descrição para o evento" />
+							</div>
+
+
+							<div class="col-sm-offset-2 col-sm-10">
+								<b:commandButton update="frm_evento" icon="floppy-saved"
+									value="Cadastra Evento"
+									styleClass="btn btn-primary btn-md"
+									action="#{eventoBean.salvar}"/>
+
+
+							</div>
+
+
+
+
+						</div>
+
+					
+
+
+					</h:form>
+				</b:panel>
+
+				<p:separator style="margin-top: 20px" />
+
+				<ui:include src="../rodape.xhtml" />
+			</div>
+		</div>
+	</div>
+</h:body>
+
+</html>

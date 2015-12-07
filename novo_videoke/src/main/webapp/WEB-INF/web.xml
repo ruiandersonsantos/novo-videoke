@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+	<display-name>novo_videoke</display-name>
+
+	<context-param>
+		<param-name>primefaces.THEME</param-name>
+		<param-value>start</param-value>
+	</context-param>
+
+	<resource-ref>
+		<res-ref-name>jdbc/GerenciadorAcessoDB</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+	
+	<welcome-file-list>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+	
+	<!-- Session Configuration -->
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+
+	<listener>
+		<listener-class>org.jboss.weld.environment.servlet.Listener
+		</listener-class>
+	</listener>
+	
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	<filter>
+		<display-name>Filtro</display-name>
+		<filter-name>Filtro</filter-name>
+		<filter-class>br.com.ruianderson.util.filtro.Filtro</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Filtro</filter-name>
+		<url-pattern>/Filtro</url-pattern>
+	</filter-mapping>
+</web-app>

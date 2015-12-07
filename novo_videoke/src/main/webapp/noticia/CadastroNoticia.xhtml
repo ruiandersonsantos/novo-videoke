@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistema de controle para videoke</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+
+</h:head>
+
+<h:body>
+	<f:view encoding="ISO-8859-1">
+		<ui:include src="../topo.xhtml" />
+
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="col-sm-12">
+					<f:metadata>
+						<o:viewParam name="noticia" value="#{noticiaBean.noticia}" />
+					</f:metadata>
+
+					<b:panel id="pn_cadastro" collapsed="false" look="primary"
+						title="Cadastro de Noticias">
+
+						<h:form styleClass="form-horizontal" id="frm_noticia">
+
+							<p:messages id="messages" autoUpdate="true" closable="true" />
+
+
+							<div class="form-group">
+								<label for="id" class="col-sm-2 control-label">Id:</label>
+								<div class="col-sm-10">
+									<b:inputText id="id" span="2" readonly="true"
+										value="#{noticiaBean.noticia.id}" />
+								</div>
+
+								<label for="ptitulo" class="col-sm-2 control-label">Titulo:</label>
+								<div class="col-sm-10">
+									<b:inputText id="ptitulo" span="8"
+										value="#{noticiaBean.noticia.titulo}"
+										placeholder="informe o titulo da noticia" />
+								</div>
+
+								<label for="pchamada" class="col-sm-2 control-label">Chamada:</label>
+								<div class="col-sm-10">
+									<b:inputText id="pchamada" span="8"
+										value="#{noticiaBean.noticia.textochamada}"
+										placeholder="informe a chamada da noticia" />
+								</div>
+
+								<label for="preponsavel" class="col-sm-2 control-label">Responsavel:</label>
+								<div class="col-sm-10">
+									<b:inputText id="preponsavel" span="8"
+										value="#{noticiaBean.noticia.responsavel}"
+										placeholder="informe o responsável" />
+								</div>
+
+								<label for="plinkfoto" class="col-sm-2 control-label">Link
+									da foto:</label>
+								<div class="col-sm-10">
+									<b:inputText id="plinkfoto" span="8"
+										value="#{noticiaBean.noticia.linkfoto}"
+										placeholder="informe o link da foto" />
+								</div>
+								
+								<label for="plsite" class="col-sm-2 control-label">Site :</label>
+								<div class="col-sm-10">
+									<b:inputText id="plsite" span="8"
+										value="#{noticiaBean.noticia.sitenoticia}"
+										placeholder="informe o site da noticia" />
+								</div>
+								
+
+
+
+								<label for="noticialocal" class="col-sm-2 control-label">Tipo
+									noticia:</label>
+								<div class="col-sm-10">
+									<p:selectOneMenu id="noticialocal"
+										value="#{noticiaBean.noticia.tiponoticia}">
+										<f:selectItem itemLabel="Selecione um tipo" />
+										<f:selectItems value="#{noticiaBean.tipoNoticias}"
+											var="tiponoticia" itemLabel="#{tiponoticia}"
+											itemValue="#{tiponoticia}" />
+									</p:selectOneMenu>
+								</div>
+								
+								
+								
+								
+
+							</div>
+							
+							<div class="form-group">
+								
+								<label for="noticiastatus" class="col-sm-2 control-label">Status
+									noticia:</label>
+								<div class="col-sm-10">
+									<p:selectOneMenu id="noticiastatus"
+										value="#{noticiaBean.noticia.statusnoticia}">
+										<f:selectItem itemLabel="Selecione um status" />
+										<f:selectItems value="#{noticiaBean.statusNoticias}"
+											var="statusnoticia" itemLabel="#{statusnoticia}"
+											itemValue="#{statusnoticia}" />
+									</p:selectOneMenu>
+								</div>
+							
+							</div>
+
+
+
+							<div class="form-group">
+								<label for="dtinicio" class="col-sm-2 control-label">Data
+									Inicio:</label>
+								<div class="col-sm-7 ">
+
+									<b:datepicker id="dtinicio" numberOfMonths="1"
+										value="#{noticiaBean.noticia.dataInicio}" changeYear="true"
+										placeholder="data no formato dd/mm/aaaa" />
+
+								</div>
+
+							</div>
+
+
+
+							<div class="form-group">
+								<label for="dtfim" class="col-sm-2 control-label">Data
+									Fim:</label>
+								<div class="col-sm-7 ">
+
+									<b:datepicker id="dtfim" numberOfMonths="1"
+										value="#{noticiaBean.noticia.datafim}" changeYear="true"
+										placeholder="data no formato dd/mm/aaaa" />
+
+								</div>
+
+							</div>
+
+							<div class="form-group">
+
+								<label for="pnoticia" class="col-sm-2 control-label">Noticia:</label>
+								<div class="col-sm-10">
+									<p:inputTextarea rows="10"
+										value="#{noticiaBean.noticia.textodanoticia}" cols="65"
+										counter="display" maxlength="5000"
+										counterTemplate="{0} caracteres restantes." autoResize="false" />
+									<p>
+										<h:outputText id="display" />
+									</p>
+								</div>
+
+							</div>
+
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<b:commandButton update="frm_noticia" icon="floppy-saved"
+										action="#{noticiaBean.salvar}"
+										value="#{noticiaBean.noticia.id == null ? 'Cadastrar Noticia' : 'Alterar Noticia'}"
+										styleClass="btn btn-primary btn-md" />
+
+								</div>
+							</div>
+
+						</h:form>
+					</b:panel>
+
+					<p:separator style="margin-top: 20px" />
+
+					<ui:include src="../rodape.xhtml" />
+				</div>
+			</div>
+		</div>
+	</f:view>
+</h:body>
+
+</html>

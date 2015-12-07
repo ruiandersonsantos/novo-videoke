@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:form>
+	<!-- Inicio da Noticia principal -->
+	<div class="jumbotron">
+
+		<div class="container"></div>
+		<h1>
+			<h:outputText rendered="#{noticiaBean.noticiaprincipal != null}"
+				value="#{noticiaBean.noticiaprincipal.titulo}" />
+		</h1>
+		<h1>
+			<h:outputText rendered="#{noticiaBean.noticiaprincipal == null}"
+				value="Anuncie aqui" />
+		</h1>
+		<p class="lead">
+			<h:outputText rendered="#{noticiaBean.noticiaprincipal != null}"
+				value="#{noticiaBean.noticiaprincipal.textochamada}" />
+
+			<h:outputText rendered="#{noticiaBean.noticiaprincipal == null}"
+				value="Esse espaço pode conter seu anuncio, saiba como..." />
+		</p>
+		<p>
+			<h:link rendered="#{noticiaBean.noticiaprincipal != null}" outcome="noticiaprincipal.xhtml"
+				styleClass="btn btn-lg btn-success" >Saiba mais...</h:link>
+			<h:link rendered="#{noticiaBean.noticiaprincipal == null}"
+				styleClass="btn btn-lg btn-success" outcome="#">Anuncie...</h:link>
+			
+		</p>
+	</div>
+	<!-- Fim da Noticia principal -->
+
+
+	<!-- Fim do container das noticias 1, 2 e 3 -->
+	<div class="row">
+		<!-- Inicio da Noticia 1 -->
+		<div class="col-lg-4">
+			<h2>
+				<h:outputText rendered="#{noticiaBean.noticia1 != null}"
+					value="#{noticiaBean.noticia1.titulo}" />
+			</h2>
+			<h2>
+				<h:outputText rendered="#{noticiaBean.noticia1 == null}"
+					value="Anuncie aqui" />
+			</h2>
+			<p>
+				<h:outputText rendered="#{noticiaBean.noticia1 != null}"
+					value="#{noticiaBean.noticia1.textochamada}" />
+
+				<h:outputText rendered="#{noticiaBean.noticia1 == null}"
+					value="Esse espaço pode conter seu anuncio, saiba como..." />
+			</p>
+			<p>
+				<h:link rendered="#{noticiaBean.noticia1 != null}" outcome="noticia1.xhtml"
+					styleClass="btn btn-primary" >Saiba mais...</h:link>
+				<h:link rendered="#{noticiaBean.noticia1 == null}"
+					styleClass="btn btn-primary" outcome="#">Anuncie...</h:link>
+			</p>
+		</div>
+		<!-- Fim da Noticia 1 -->
+
+		<!-- Inicio da Noticia 2 -->
+		<div class="col-lg-4">
+			<h2>
+				<h:outputText rendered="#{noticiaBean.noticia2 != null}"
+					value="#{noticiaBean.noticia2.titulo}" />
+			</h2>
+			<h2>
+				<h:outputText rendered="#{noticiaBean.noticia2 == null}"
+					value="Anuncie aqui" />
+			</h2>
+			<p>
+				<h:outputText rendered="#{noticiaBean.noticia2 != null}"
+					value="#{noticiaBean.noticia2.textochamada}" />
+
+				<h:outputText rendered="#{noticiaBean.noticia2 != null}"
+					value="Esse espaço pode conter seu anuncio, saiba como..." />
+			</p>
+			<p>
+				<h:link rendered="#{noticiaBean.noticia2 != null}" outcome="noticia2.xhtml"
+					styleClass="btn btn-primary">Saiba mais...</h:link>
+				<h:link rendered="#{noticiaBean.noticia2 == null}"
+					styleClass="btn btn-primary" outcome="#">Anuncie...</h:link>
+			</p>
+		</div>
+		<!-- Fim da Noticia 2 -->
+
+
+		<!-- Inicio da Noticia 3 -->
+		<div class="col-lg-4">
+			<h2>
+				<h:outputText rendered="#{noticiaBean.noticia3 != null}"
+					value="#{noticiaBean.noticia3.titulo}" />
+			</h2>
+			<h2>
+				<h:outputText rendered="#{noticiaBean.noticia3 == null}"
+					value="Anuncie aqui" />
+			</h2>
+			<p>
+				<h:outputText rendered="#{noticiaBean.noticia3 != null}"
+					value="#{noticiaBean.noticia3.textochamada}" />
+
+				<h:outputText rendered="#{noticiaBean.noticia3 != null}"
+					value="Esse espaço pode conter seu anuncio, saiba como..." />
+			</p>
+			<p>
+				<h:link rendered="#{noticiaBean.noticia3 != null}" outcome="noticia3.xhtml"
+					styleClass="btn btn-primary">Saiba mais...</h:link>
+				<h:link rendered="#{noticiaBean.noticia3 == null}"
+					styleClass="btn btn-primary" outcome="#">Anuncie...</h:link>
+			</p>
+		</div>
+		<!-- Fim da Noticia 3 -->
+
+	</div>
+	<!-- Fim do container das noticias 1, 2 e 3 -->
+</h:form>
+</html>

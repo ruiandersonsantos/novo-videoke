@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!-- disable storage of sessions across restarts -->
+	<Manager pathname="" />
+	<Resource name="BeanManager" auth="Container"
+		type="javax.enterprise.inject.spi.BeanManager" factory="org.jboss.weld.resources.ManagerObjectFactory" />
+	<!-- Uncomment to enable injection into Servlets, Servlet Listeners and 
+		Filters in Tomcat -->
+	<!-- <Listener className="org.jboss.weld.environment.tomcat.WeldLifecycleListener"/> -->
+
+	
+
+	<!-- Conexão com o banco local -->
+<!-- 	<Resource name="jdbc/GerenciadorAcessoDB" auth="Container" -->
+<!-- 		type="javax.sql.DataSource" maxTotal="100" maxIdle="30" maxWaitMillis="10000" -->
+<!-- 		username="root" password="42301886" driverClassName="com.mysql.jdbc.Driver" -->
+<!-- 		url="jdbc:mysql://localhost:3306/videoke" /> -->
+
+
+	<!-- Conexão com o banco na web -->
+	
+	<Resource name="jdbc/GerenciadorAcessoDB"
+	auth="Container"
+	type="javax.sql.DataSource"
+	maxTotal="20"
+	maxIdle="20"
+	maxWaitMillis="10000"
+	username="ruiand_root"
+	password="42301886"
+	driverClassName="com.mysql.jdbc.Driver"
+	url="jdbc:mysql://ruianderson.com.br:3306/ruiand_videoke" />
+
+
+</Context>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" 
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistema de controle para videoke</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+
+</h:head>
+
+<h:body>
+	<ui:include src="../topo.xhtml" />
+
+	<b:panel id="pn_listagem" collapsed="false" look="primary"
+		title="Painel de Controle">
+
+
+		<p:messages id="messages" autoUpdate="true" closable="true" />
+
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="col-sm-12">
+
+					<!-- inicio da pesquisa de participante -->
+
+					<div class="row-fluid">
+						<div class="col-sm-6">
+
+							<h:form id="frm_buscaparticipante">
+
+
+								<b:panel id="pn_busca" collapsed="false" look="danger"
+									title="Pesquisa de participante">
+
+
+									<div class="table-responsive">
+
+
+										<label for="pnome" class="col-sm-2 control-label">Nome:</label>
+										<div class="col-sm-10">
+											<b:inputText id="pnome" span="8" style="margin-bottom: 15px;"
+												value="#{localizarParticipanteBean.nome}"
+												placeholder="Pesquisa pelo nome do participante" />
+										</div>
+
+										<label for="email" class="col-sm-2 control-label">Email:</label>
+										<div class="col-sm-10">
+											<b:inputText id="email" span="8" style="margin-bottom: 15px;"
+												value="#{localizarParticipanteBean.email}"
+												placeholder="Pesquisa pelo e-mail do participante" />
+										</div>
+
+										<label for="telefone" class="col-sm-2 control-label">Celular:</label>
+										<div class="col-sm-10">
+											<b:inputText id="telefone" span="8"
+												value="#{localizarParticipanteBean.celular}"
+												style="margin-bottom: 15px;"
+												placeholder="Pesquisa pelo celular do participante" />
+										</div>
+
+										<div class="col-sm-10">
+											<p:commandButton value="Pesquisar"
+												disabled="#{eventoBean.eventos.size() == 0}"
+												update=":frm_buscaparticipante" icon="ui-icon-search"
+												action="#{localizarParticipanteBean.localizarParticipante}"
+												style="margin-left: 108px;" />
+										</div>
+
+
+
+										<b:panel id="pn_buscaPartic" collapsed="false"
+											style="margin-top: 190px" look="danger"
+											title="Resultado da pesquisa"
+											rendered="#{localizarParticipanteBean.listaparticipante.size()>0}">
+
+											<p:commandButton value="Limpar Pesquisa"
+												icon="ui-icon-arrowreturnthick-1-w"
+												update=":frm_buscaparticipante" process="@this"
+												action="#{localizarParticipanteBean.limparPesquisa}" />
+
+
+											<div class="table-responsive">
+												<p:dataTable id="ParticipanteTable"
+													styleClass="table table-bordered table-striped table-hover table-condensed"
+													value="#{localizarParticipanteBean.listaparticipante}"
+													var="participante" style="margin-top: 20px"
+													emptyMessage="Nenhum participante encontrado." rows="10"
+													paginator="true" paginatorAlwaysVisible="false"
+													paginatorPosition="bottom">
+
+
+													<p:column headerText="Nome">
+														<h:outputText style="width: 100px; text-align: left"
+															value="#{participante.primeironome}" />
+													</p:column>
+
+													<p:column headerText="E-mail">
+														<h:outputText style="width: 50px; text-align: left"
+															value="#{participante.email}" />
+													</p:column>
+
+													<p:column headerText="Música"
+														style="width: 100px; text-align: center">
+														<h:inputText style="width: 80px; text-align: center"
+															value="#{participante.primeiramusica}" />
+													</p:column>
+
+													<p:column headerText="Acão"
+														style="width: 80px; text-align: center">
+														<p:commandButton update=":frm_fila"
+															action="#{filaNoEventoBean.entrarNoEvento(participante)}"
+															icon="ui-icon-plusthick">
+															<f:param name="participante" value="#{participante}" />
+														</p:commandButton>
+													</p:column>
+
+												</p:dataTable>
+											</div>
+
+
+
+										</b:panel>
+									</div>
+
+								</b:panel>
+
+
+
+							</h:form>
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
+
+					<h:form id="frm_listEvento">
+
+						<!-- inicio do datatable para Evento -->
+
+						<div class="row-fluid">
+							<div class="col-sm-6">
+
+								<b:panel id="pn_envento" collapsed="false" look="success"
+									title="Evento aberto">
+
+									<div class="table-responsive">
+										<p:dataTable id="EventoTable"
+											styleClass="table table-bordered table-striped table-hover table-condensed"
+											value="#{eventoBean.eventos}" var="evento"
+											style="margin-top: 10px" emptyMessage="Nenhum evento aberto.">
+
+											<p:column headerText="Código"
+												style="text-align: center; width: 5px">
+												<h:outputText value="#{evento.id}" />
+											</p:column>
+
+											<p:column headerText="Descrição" style=" width: 30px">
+												<h:outputText value="#{evento.descricao}" />
+											</p:column>
+
+											<p:column headerText="Abertura" style=" width: 5px">
+												<h:outputText id="dataAbertura"
+													value="#{evento.dataInicio.time}">
+													<f:convertDateTime pattern="dd/MM/yyyy" />
+												</h:outputText>
+											</p:column>
+
+											<p:column headerText="Ação"
+												style="text-align: center; width: 20px">
+												<p:commandButton icon="ui-icon-closethick"
+													update=":frm_listEvento"
+													actionListener="#{eventoBean.fecharEvento}" value="Fechar">
+
+													<p:confirm header="Fechamento de Evento"
+														message="O fechamento do evento encerrará a fila de participante, confirma essa operação?"
+														icon="ui-icon-alert" />
+
+												</p:commandButton>
+											</p:column>
+
+										</p:dataTable>
+
+									</div>
+								</b:panel>
+							</div>
+						</div>
+
+						<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+							<p:commandButton value="Sim" type="button"
+								styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+							<p:commandButton value="Não" type="button"
+								styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+						</p:confirmDialog>
+
+					</h:form>
+
+
+
+
+					<!-- inicio do datatable para Fila de participantes -->
+
+
+					<div class="row-fluid">
+						<div class="col-sm-6">
+							<h:form id="frm_fila">
+								<b:panel id="pn_fila" collapsed="false" look="warning"
+									title="Fila de Participantes">
+
+									<div class="table-responsive">
+										<p:dataTable id="filaTable"
+											styleClass="table table-bordered table-striped table-hover table-condensed"
+											value="#{filaNoEventoBean.listaParaCantar}" var="fila"
+											style="margin-top: 10px"
+											emptyMessage="Nenhum participante na fila.">
+
+
+											<p:column headerText="Posição"
+												style="width: 5px; text-align: center">
+												<h:outputText value="#{fila.posicao}"
+													style="width: 5px; text-align: center" />
+											</p:column>
+
+											<p:column headerText="Nome" style="width: 40px;">
+												<h:outputText value="#{fila.participante.primeironome}" />
+											</p:column>
+
+											<p:column headerText="Proxima"
+												style="width: 20px; text-align: center;">
+												<h:inputText value="#{fila.participante.primeiramusica}"
+													style="width: 60px; text-align: center" />
+											</p:column>
+
+
+
+											<p:column headerText="Cantou"
+												style="text-align: center; width: 20px;">
+												<p:commandButton icon="ui-icon-play" update=":frm_fila"
+													action="#{filaNoEventoBean.cantou(fila)}"
+													value="#{fila.codigomusica}">
+													<f:param name="fila" value="#{fila}" />
+												</p:commandButton>
+											</p:column>
+
+											<p:column headerText="Alterar"
+												style="text-align: center; width: 20px;">
+												<p:button icon="ui-icon-pencil" outcome="AlteraPosicao">
+													<f:param name="fila" value="#{fila.id}" />
+												</p:button>
+											</p:column>
+
+										</p:dataTable>
+
+									</div>
+								</b:panel>
+							</h:form>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+
+
+
+
+
+	</b:panel>
+
+
+	<p:separator style="margin-top: 20px" />
+
+	<ui:include src="../rodape.xhtml" />
+
+</h:body>
+
+</html>
