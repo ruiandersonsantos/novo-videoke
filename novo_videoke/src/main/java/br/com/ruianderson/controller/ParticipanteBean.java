@@ -28,10 +28,21 @@ public class ParticipanteBean implements Serializable{
 	public void salvar() {
 		try {
 			participante.setTipousuario(TipoUsuario.PARTICIPANTE);
-			this.participanteService.salvar(participante);
-			FacesUtil.addSuccessMessage("Participante salvo com sucesso!");
 			
-			this.limpar();
+			Long verifica = new Long(0);
+			if(participante.getId()== null)
+			verifica = participanteService.verificaParticipanteCadastrado(participante);
+			
+			if(verifica == 0 || verifica == null){
+				this.participanteService.salvar(participante);
+				FacesUtil.addSuccessMessage("Participante salvo com sucesso!");
+				this.limpar();
+				
+			}else{
+				FacesUtil.addErrorMessage("E-mail e/ou Celular já cadastro no Sistema! Verifique os dados informados e tente novamente.");
+				FacesUtil.addErrorMessage("E-mail:"+participante.getEmail() +" - "+ "celular: "+participante.getCelular());
+			}
+						
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}

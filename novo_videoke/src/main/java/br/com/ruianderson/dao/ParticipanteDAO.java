@@ -29,6 +29,17 @@ public class ParticipanteDAO implements Serializable{
 		return em.find(Participante.class, codigo);
 	
 	}
+	
+	public Long vericifaParticipanteCadastrado(Participante participante){
+		
+		@SuppressWarnings("unchecked")
+		List<Object> lista =  em.createQuery("select count(p) from Participante p where p.email = :email or p.celular = :celular")
+				.setParameter("email", participante.getEmail())
+				.setParameter("celular", participante.getCelular())
+				.getResultList();
+		
+		return (Long) lista.get(0);
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<Participante> buscarParticipantes(String nome, String email,

@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
@@ -18,6 +20,15 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
+@Table(name="Participante", indexes={
+		@Index(columnList="email",unique=true, name="idx_email"),
+		@Index(columnList="senha",unique=false, name="idx_senha"),
+		@Index(columnList="dataNascimento",unique=false, name="idx_dtNasc"),
+		@Index(columnList="primeironome",unique=false, name="idx_nome"),
+		@Index(columnList="tipousuario",unique=false, name="idx_tipo"),
+		@Index(columnList="celular",unique=false, name="idx_celular")
+		
+})
 public class Participante {
 	
 	@Id

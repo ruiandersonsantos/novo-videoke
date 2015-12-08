@@ -1,14 +1,20 @@
-<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:o="http://omnifaces.org/ui">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
 
-    <ui:define name="titulo">Novo Participante</ui:define>
-    
-    <ui:define name="corpo">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistema de controle para videoke</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+
+</h:head>
+
+<h:body>
     	<f:metadata>
 			<o:viewParam name="organizador" value="#{organizadorBean.organizador}" />
 		</f:metadata>
@@ -48,5 +54,6 @@
 	    		<p:password id="senha" size="60" maxlength="80" value="#{organizadorBean.organizador.senha}" rendered="#{organizadorBean.organizador.id == null}"/>
 	    	</p:panelGrid>
     	</h:form>
-    </ui:define>
-</ui:composition>
+  </h:body>
+
+</html>

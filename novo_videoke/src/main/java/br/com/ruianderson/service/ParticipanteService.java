@@ -20,6 +20,10 @@ public class ParticipanteService implements Serializable {
 
 		this.participanteDAO.salvar(participante);
 	}
+	
+	public Long verificaParticipanteCadastrado(Participante participante){
+		return participanteDAO.vericifaParticipanteCadastrado(participante);
+	}
 
 	public List<Participante> buscaParticipantes(String nome, String email,
 			Integer celular) {
