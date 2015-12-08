@@ -20,7 +20,8 @@ import javax.persistence.TemporalType;
 		@Index(columnList="tiponoticia",unique=false, name="idx_tiponoticia"),
 		@Index(columnList="statusnoticia",unique=false, name="idx_statusnoticia"),
 		@Index(columnList="dataInicio",unique=false, name="idx_dataInicio"),
-		@Index(columnList="titulo",unique=false, name="idx_titulo")
+		@Index(columnList="titulo",unique=false, name="idx_titulo"),
+		@Index(columnList="textofoto",unique=false, name="idx_textofoto")
 })
 public class Noticia {
 	
@@ -35,6 +36,7 @@ public class Noticia {
 	private String responsavel;
 	private String sitenoticia;
 	private String linkfoto;
+	private String textofoto;
 	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicio;
@@ -120,6 +122,16 @@ public class Noticia {
 	public void setLinkfoto(String linkfoto) {
 		this.linkfoto = linkfoto;
 	}
+	
+	
+	
+	
+	public String getTextofoto() {
+		return textofoto;
+	}
+	public void setTextofoto(String textofoto) {
+		this.textofoto = textofoto;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -127,6 +139,9 @@ public class Noticia {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
+	
+	
+	
 	
 	
 	@Override
