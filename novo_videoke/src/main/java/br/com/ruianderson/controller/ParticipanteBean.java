@@ -24,8 +24,8 @@ public class ParticipanteBean implements Serializable{
 	private ParticipanteService participanteService;
 	
 	private Participante participante;
-	
-	public void salvar() {
+		
+	public String salvar() {
 		try {
 			participante.setTipousuario(TipoUsuario.PARTICIPANTE);
 			
@@ -34,9 +34,21 @@ public class ParticipanteBean implements Serializable{
 			verifica = participanteService.verificaParticipanteCadastrado(participante);
 			
 			if(verifica == 0 || verifica == null){
-				this.participanteService.salvar(participante);
-				FacesUtil.addSuccessMessage("Participante salvo com sucesso!");
-				this.limpar();
+				
+				if(participante.getId() == null){
+					if(participante.getSenha().trim().equals(participante.getConfimasenha().trim())){
+						finalizaCadastro();
+						return "homep.xhtml?faces-redirect=true";
+					}else{
+						FacesUtil.addErrorMessage("Senha e confimação de senha estão diferentes!");
+					}
+					
+				}else{
+					finalizaCadastro();
+					return "";
+				}
+				
+				
 				
 			}else{
 				FacesUtil.addErrorMessage("E-mail e/ou Celular já cadastro no Sistema! Verifique os dados informados e tente novamente.");
@@ -46,6 +58,13 @@ public class ParticipanteBean implements Serializable{
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
 		}
+		return "";
+	}
+
+	private void finalizaCadastro() throws NegocioException {
+		this.participanteService.salvar(participante);
+		FacesUtil.addSuccessMessage("Participante salvo com sucesso!");
+		this.limpar();
 	}
 	
 	@PostConstruct
@@ -65,5 +84,6 @@ public class ParticipanteBean implements Serializable{
 		this.participante = participante;
 	}
 
+	
 	
 }

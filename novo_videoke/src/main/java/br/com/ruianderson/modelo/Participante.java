@@ -41,6 +41,9 @@ public class Participante {
 	private Date dataNascimento;
 	
 	@Transient
+	private String confimasenha;
+	
+	@Transient
 	private String primeiramusica;
 	
 	@Enumerated(EnumType.STRING)
@@ -109,6 +112,14 @@ public class Participante {
 	}
 	
 	
+	
+	
+	public String getConfimasenha() {
+		return confimasenha;
+	}
+	public void setConfimasenha(String confimasenha) {
+		this.confimasenha = confimasenha;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
