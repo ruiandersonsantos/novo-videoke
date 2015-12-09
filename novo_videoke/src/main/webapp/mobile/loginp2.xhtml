@@ -9,38 +9,67 @@
 <h:head>
 	<title>Videoke</title>
 	<meta name="viewport" content="width=device-width" />
-	
+
 	<link rel="stylesheet" href="css/bootstrap.min.css" />
-		
-	<script	src="js/jquery.min.js" type="text/javascript"/>
-	
-	<script	src="js/bootstrap.min.js" type="text/javascript"/>
-		
-	<link rel="stylesheet" href="css/customizado.css" />	
-	
+
+	<script src="js/jquery.min.js" type="text/javascript" />
+
+	<script src="js/bootstrap.min.js" type="text/javascript" />
+
+	<link rel="stylesheet" href="css/customizado.css" />
+
 </h:head>
 
 <h:body>
 	<div class="container">
-		
+
 		<p:messages id="messages" autoUpdate="true" closable="true" />
-			
+
+		<div style="text-align: center;">
+
+			<figure class="html5">
+				<img src="img/login.png" alt="Login" title="Login" width="200"
+					height="200" />
+
+			</figure>
+
+
+		</div>
+
 		<!-- conteudo começa aqui -->
-		 <h:form styleClass="form-signin">
-                <h2 class="form-signin-heading">Login</h2>
-                <b:inputText value="#{loginBean.login.email}" type="text" styleClass="form-control" placeholder="Endereço de e-mail"/>
-				<b:inputSecret value="#{loginBean.login.senha}" type="password" styleClass="form-control" placeholder="Senha"/>               
-                
-<!--                 <label class="checkbox"> -->
-<!--                 	<h:selectBooleanCheckbox value="" /> Lembre Me -->
-                	
-<!--                 </label> -->
-                <h:commandButton action="#{loginBean.logarParticipante}"  value="Logar" styleClass="btn btn-lg btn-primary btn-block"/>
-                
-            </h:form>
-		
-		
-	
+		<h:form styleClass="form-signin">
+			<h2 class="form-signin-heading">Login</h2>
+			<b:inputText value="#{loginBean.login.email}" type="text"
+				styleClass="form-control" placeholder="Endereço de e-mail" />
+			<b:inputSecret value="#{loginBean.login.senha}" type="password"
+				styleClass="form-control" placeholder="Senha" />
+
+			<!--                 <label class="checkbox"> -->
+			<!--                 	<h:selectBooleanCheckbox value="" /> Lembre Me -->
+
+			<!--                 </label> -->
+			<h:commandButton action="#{loginBean.logarParticipante}"
+				value="Logar" styleClass="btn btn-lg btn-primary btn-block" />
+			<p>
+				
+			</p>
+
+			<div style="text-align: left;">
+				<h:link outcome="homep.xhtml" >
+				<figure class="html5">
+					<img src="img/cadastrar.png" alt="Cadastrar" title="Cadastrar"
+						width="126" height="38" />
+
+				</figure>
+			</h:link>
+
+			</div>
+
+
+		</h:form>
+
+
+
 	</div>
 	<!-- /container -->
 </h:body>

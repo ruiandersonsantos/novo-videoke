@@ -17,7 +17,10 @@ import br.com.ruianderson.modelo.Login;
 /**
  * Servlet Filter implementation class Filtro
  */
-@WebFilter(filterName = "FiltroLogin", urlPatterns = {"/participante/*","/evento/*","/restrito/*"})
+@WebFilter(filterName = "FiltroLogin", urlPatterns = {"/participante/*","/evento/*",
+		"/restrito/*","/mobile/homep.xhtml","/mobile/filap.xhtml", "/mobile/buscamusica.xhtml",
+		"/mobile/noticiaprincipal.xhtml","/mobile/noticia1.xhtml","/mobile/noticia2.xhtml",
+		"/mobile/noticia3.xhtml"})
 public class Filtro implements Filter {
 
     /**
@@ -50,7 +53,8 @@ public class Filtro implements Filter {
 	            
 	        }else{
 	            
-	            res.sendRedirect("../index.xhtml");
+	            //res.sendRedirect("../index.xhtml");
+	        	res.sendRedirect("../mobile/loginp2.xhtml");
 	        }
 	}
 
