@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:o="http://omnifaces.org/ui" xmlns:p="http://primefaces.org/ui"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<title>Videoke</title>
+	<meta name="viewport" content="width=device-width" />
+	
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+		
+	<script	src="js/jquery.min.js" type="text/javascript"/>
+	
+	<script	src="js/bootstrap.min.js" type="text/javascript"/>
+		
+	<link rel="stylesheet" href="css/customizado.css" />	
+	
+</h:head>
+
+<h:body>
+	<div class="container">
+	
+		<ui:include src="topop.xhtml" />
+		
+		<!-- conteudo começa aqui -->
+		<div class="row-fluid">
+				<div class="col-sm-12">
+					
+					<b:panel id="pn_cadastro" collapsed="false" look="primary" 
+						title="Alteração de senha de Usuario">
+
+						<h:form styleClass="form-horizontal" id="frm_participante">
+
+							<p:messages id="messages" autoUpdate="true" closable="true" />
+
+
+							
+							<div class="form-group">
+
+								<label for="senha" class="col-sm-2 control-label">Senha Atual:</label>
+								<div class="col-sm-10">
+									<b:inputSecret id="senha" span="8"
+										value="#{loginBean.senha}"
+										placeholder="informe uma senha" />
+								</div>
+								
+								<label for="nsenha" class="col-sm-2 control-label">Nova Senha:</label>
+								<div class="col-sm-10">
+									<b:inputSecret id="nsenha" span="8"
+										value="#{loginBean.novasenha}"
+										placeholder="informe a nova senha" />
+								</div>
+								
+								<label for="csenha" class="col-sm-2 control-label">Confirme Nova Senha:</label>
+								<div class="col-sm-10">
+									<b:inputSecret id="csenha" span="8"
+										value="#{loginBean.confirmasenha}"
+										placeholder="Confirme a nova senha." />
+								</div>
+
+							</div>
+
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<b:commandButton update="frm_participante" icon="floppy-saved"
+										action="#{loginBean.alterarSenhaParticipante()}"
+										value="Alterar"
+										styleClass="btn btn-primary btn-md" />
+
+								</div>
+							</div>
+
+						</h:form>
+					</b:panel>
+
+					<p:separator style="margin-top: 20px" />
+
+					<ui:include src="../rodape.xhtml" />
+				</div>
+			</div>
+		
+		
+		
+		
+		
+		
+	</div>
+	<!-- /container -->
+</h:body>
+</html>
