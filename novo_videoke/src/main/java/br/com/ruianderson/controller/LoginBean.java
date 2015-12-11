@@ -79,6 +79,8 @@ public class LoginBean implements Serializable{
 						this.confirmasenha = "";
 						this.novasenha = "";
 						this.senha = "";
+					}else{
+						FacesUtil.addErrorMessage("Confirmação e senha nova estão diferente!");
 					}
 					
 				}else{

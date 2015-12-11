@@ -20,7 +20,7 @@ import br.com.ruianderson.modelo.Login;
 @WebFilter(filterName = "FiltroLogin", urlPatterns = {"/participante/*","/evento/*",
 		"/restrito/*","/mobile/homep.xhtml","/mobile/filap.xhtml", "/mobile/buscamusica.xhtml",
 		"/mobile/noticiaprincipal.xhtml","/mobile/noticia1.xhtml","/mobile/noticia2.xhtml",
-		"/mobile/noticia3.xhtml"})
+		"/mobile/alterarsenha.xhtml","/mobile/noticia3.xhtml"})
 public class Filtro implements Filter {
 
     /**
