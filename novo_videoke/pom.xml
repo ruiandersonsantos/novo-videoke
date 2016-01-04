@@ -9,7 +9,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
+
 	<build>
 		<finalName>ROOT</finalName>
 		<plugins>
@@ -33,6 +33,14 @@
 			<version>2.1.21</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- JavaMail 1.4.4 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.4</version>
+		</dependency>
+
 
 		<!-- Weld (implementação do CDI) -->
 		<dependency>
