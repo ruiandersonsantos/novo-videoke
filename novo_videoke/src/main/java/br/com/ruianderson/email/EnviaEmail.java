@@ -34,7 +34,8 @@ public class EnviaEmail {
 	}
 
 	@SuppressWarnings("unused")
-	private  void enviarEmail(String destinatario, String nome) throws AddressException, MessagingException {
+	public  void enviarEmail(String destinatario, String nome) throws AddressException, MessagingException {
+		
 		String msg = "Prezado "+nome+" para ativar seu cadastro clique no link abaixo!";
 		String assunto = "Videoke ativação de cadastro.";
 		
